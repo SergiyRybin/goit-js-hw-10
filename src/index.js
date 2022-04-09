@@ -26,7 +26,7 @@ console.log(langua)
 if(countrys.length===1){
 const markup = countrys.map(({name, flags, capital, population, languages})=>{
 
-  return `<li style="display: flex;align-items: center;"><img src="${flags.svg}" alt="${name.official}" width='25px'>${name.official}</li><p>Capital: ${capital}</p><p>Population: ${population}</p><p>Languages: ${languages}</p>`
+  return `<li style="display: flex;align-items: center;"><img src="${flags.svg}" alt="${name.official}" width='25px'>${name.official}</li><p>Capital: ${capital}</p><p>Population: ${population}</p><p>Languages: ${Object.values(languages)}</p>`
 }).join("");
 listCountry.innerHTML=markup
 }else{const markup = countrys.map(({name, flags})=>{
