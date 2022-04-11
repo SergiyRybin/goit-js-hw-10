@@ -5,17 +5,19 @@ import Notiflix from 'notiflix';
 
 const DEBOUNCE_DELAY = 300;
 const listCountry = document.querySelector(".country-list")
-console.log()
 
 let nameCountry = {};
-
-
 const searchBox = document.querySelector("#search-box")
 
 searchBox.addEventListener("input", debounce(onText, DEBOUNCE_DELAY))
 
 function onText(event){
-  nameCountry = event.target.value
+  event.preventDefault()
+  listCountry.innerHTML='';
+  nameCountry = event.target.value.trim()
+  if(nameCountry===""){
+   return
+    }
   fetchUser(nameCountry).then(renderCountry).catch(renderEror)
 }
 
@@ -33,7 +35,8 @@ else{const markup = countrys.map(({name, flags})=>{
 }).join("");
 listCountry.innerHTML=markup
 Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
-}}
+}
+}
 
 function renderEror(){
   Notiflix.Notify.failure('Oops, there is no country with that name')
